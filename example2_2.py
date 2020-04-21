@@ -1,7 +1,7 @@
-import ex2
+import example2
 
 x = 1
 
 
 def g():
-    print(ex2.f())
+    print(example2.f())

@@ -20,10 +20,13 @@ from qwerty import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path("example3/", views.Example3.as_view()),
     path("example4/", views.Example4.as_view()),
+    path("example4_2/", views.Example4_2.as_view()),
     path("example5/", views.Example5.as_view()),
-    path("example5_2/", views.Example5_2.as_view()),
     path("example6/", views.Example6.as_view()),
+    path("example7/", views.Example7.as_view()),
 ]
+
 urlpatterns += [path('silk/', include('silk.urls', namespace='silk'))]
 

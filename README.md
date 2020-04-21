@@ -4,12 +4,14 @@
 
 2. Creating circular module dependencies
 
-3. 100% server load via loading 6kk rows in memory
+3. raw sql injection
 
-4. Slow pagination because of Limit-Offset for 6kk rows
+4. Async race for Django that using gunicon with multiple workers
 
-5. Async race for Django that using gunicon with multiple workers
+5. Django DB optimization
 
-6. Django DB optimization
+6. Slow pagination because of Limit-Offset for 6kk rows
+
+7. Changing class in the runtime
 
 I got 6kk rows from https://datasets.imdbws.com/

@@ -15,9 +15,9 @@ class Order(models.Model):
 
 
 class Films(models.Model):
-    nconst = models.CharField(max_length=3000, blank=True)
-    primaryName = models.CharField(max_length=3000, blank=True)
-    birthYear = models.CharField(max_length=3000, blank=True)
-    deathYear = models.CharField(max_length=3000, blank=True)
-    primaryProfession = models.CharField(max_length=3000, blank=True)
-    knownForTitles = models.CharField(max_length=3000, blank=True)
+    nconst = models.CharField(max_length=3000, blank=True, null=True)
+    primaryName = models.CharField(max_length=3000, blank=True, null=True)
+    birthYear = models.CharField(max_length=3000, blank=True, null=True)
+    deathYear = models.CharField(max_length=3000, blank=True, null=True)
+    primaryProfession = models.CharField(max_length=3000, blank=True, null=True)
+    knownForTitles = models.CharField(max_length=3000, blank=True, null=True)
