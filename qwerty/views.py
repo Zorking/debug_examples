@@ -11,18 +11,22 @@ from qwerty.models import Order, Films
 
 
 class Example3Serializer(serializers.Serializer):
-    some_field = serializers.CharField()
+    id = serializers.CharField()
 
+class Example3_2Serializer(serializers.Serializer):
+    id = serializers.CharField()
+    name = serializers.CharField()
+    cost = serializers.CharField()
 
 class Example3(views.APIView):
     def post(self, request, *_, **__):
-        serializer = Example3Serializer(request.data)
+        serializer = Example3Serializer(data=request.data)
         serializer.is_valid(raise_exception=True)
-        orders = Order.objects.raw("SELECT * FROM core_order WHERE " + serializer.validated_data.get("some_field"))
+        orders = Order.objects.raw("SELECT id, name, cost FROM qwerty_order WHERE id=" + serializer.validated_data.get("id"))
+        data = []
         for order in orders:
-            if "something" in order.name:
-                return Response("Found")
-        return Response("Not found")
+            data.append({"id": order.id, "name": order.name, "cost": order.cost})
+        return Response(data)
 
 
 class Example4(views.APIView):
@@ -30,6 +34,7 @@ class Example4(views.APIView):
         order = Order.objects.last()
         order.name = "example"
         order.save()
+        return Response()
 
 
 class Example4_2(views.APIView):
@@ -37,10 +42,11 @@ class Example4_2(views.APIView):
         order = Order.objects.last()
         order.cost = "example"
         order.save()
+        return Response()
 
 
 class Example5(views.APIView):
-    def get(self):
+    def get(self, *_, **__):
         orders = Order.objects.all()
         customer_names = []
         for order in orders:
