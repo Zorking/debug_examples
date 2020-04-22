@@ -25,7 +25,6 @@ urlpatterns = [
     path("example4_2/", views.Example4_2.as_view()),
     path("example5/", views.Example5.as_view()),
     path("example6/", views.Example6.as_view()),
-    path("example7/", views.Example7.as_view()),
 ]
 
 urlpatterns += [path('silk/', include('silk.urls', namespace='silk'))]

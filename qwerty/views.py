@@ -60,12 +60,7 @@ class Example6Serializer(serializers.ModelSerializer):
         fields = "__all__"  # another common mistake
 
 
-class Example6(ListAPIView):
-    serializer_class = Example6Serializer
-    queryset = Films.objects.all()
-
-
-class Example7Serializer(serializers.Serializer):
+class Example6Serializer(serializers.Serializer):
     field1 = serializers.CharField(default="")
     field2 = serializers.CharField(default="")
     field3 = serializers.CharField(default="")
@@ -73,10 +68,10 @@ class Example7Serializer(serializers.Serializer):
     field5 = serializers.CharField(default="")
 
 
-class Example7(views.APIView):  # FIXED IN NEXT DJANGO VERSION
+class Example6(views.APIView):  # FIXED IN NEXT DJANGO VERSION
     def patch(self, *_, **__):
         instance = {"field1": "example"}
-        serialized_data = Example7Serializer(data=instance, partial=True)
+        serialized_data = Example6Serializer(data=instance, partial=True)
         if serialized_data.is_valid():
             _declared_fields = serialized_data._declared_fields.keys()
             _declared_fields = [x for x in _declared_fields]
@@ -92,4 +87,4 @@ class Example7(views.APIView):  # FIXED IN NEXT DJANGO VERSION
         return Response(serialized_data.data)
 
     def get(self, *args, **kwargs):
-        return Response(Example7Serializer(instance={}).data)
+        return Response(Example6Serializer(instance={}).data)
